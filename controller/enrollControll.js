@@ -1,6 +1,7 @@
 const { isValidObjectId } = require("mongoose");
 const { Enroll } = require("../model/Enroll");
 
+///////// ADD COURSE TO CNROLL LIST /////////
 const CreateEnrollment = async (req, res) => {
   const courseId = req.params.courseId;
   const userId = req.user;
@@ -15,6 +16,8 @@ const CreateEnrollment = async (req, res) => {
   await enroll.save();
   res.status(201).send(enroll);
 };
+
+//////////// GET ALL ENROLED COURS ///////////
 const GetEnrollments = async (req, res) => {
   const enrolledCourse = await Enroll.find({
     student_id: req.user._id,
@@ -24,6 +27,7 @@ const GetEnrollments = async (req, res) => {
   res.status(200).json({ success: true, enrolled_course: enrolledCourse });
 };
 
+/////////////  REMOVE CORUSE FROM ENROLL LIST /////////
 const DeleteEnrollment = async (req, res) => {
   const courseId = req.params.courseId;
   if (!isValidObjectId(courseId)) {

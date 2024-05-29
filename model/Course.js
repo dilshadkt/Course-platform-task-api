@@ -10,7 +10,6 @@ const Course = mongoose.model(
     start_date: { type: Date, required: true },
     end_date: { type: Date, required: true },
     instructor: { type: String, required: true },
-    // capacity: { type: Number, required: true },
   })
 );
 
@@ -22,7 +21,6 @@ const courseSchema = Joi.object({
   start_date: Joi.date().required(),
   end_date: Joi.date().required(),
   instructor: Joi.string().required(),
-  // capacity: Joi.number().required(),
 });
 
 module.exports = { courseSchema, Course };

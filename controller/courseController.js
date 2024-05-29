@@ -1,6 +1,8 @@
 const { isValidObjectId } = require("mongoose");
 const { Course } = require("../model/Course");
 const _ = require("lodash");
+
+///////////// CREATE A COURSE //////////
 const CreateCourse = async (req, res) => {
   const newCourse = new Course(
     _.pick(req.body, [
@@ -17,11 +19,13 @@ const CreateCourse = async (req, res) => {
   res.status(200).json({ success: true, courses });
 };
 
+//////// GET COURSES ////////////////
 const GetCourse = async (req, res) => {
   const courses = await Course.find();
   res.status(200).json({ succss: true, courses });
 };
 
+////////// UPDATE COURSE ///////////////
 const UpdateCourse = async (req, res) => {
   const courseId = req.params.courseId;
   if (!isValidObjectId(courseId)) {
@@ -33,6 +37,7 @@ const UpdateCourse = async (req, res) => {
   res.status(200).json({ success: true, course: updatedCouse });
 };
 
+//////////// DELETE COURESE /////////////
 const DeleteCourse = async (req, res) => {
   const courseId = req.params.courseId;
   if (!isValidObjectId(courseId)) {
