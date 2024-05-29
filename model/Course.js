@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
 
-const Course = mongoose.Schema(
+const Course = mongoose.model(
   "Course",
   new mongoose.Schema({
     name: { type: String, required: true },
@@ -10,7 +10,7 @@ const Course = mongoose.Schema(
     start_date: { type: Date, required: true },
     end_date: { type: Date, required: true },
     instructor: { type: String, required: true },
-    capacity: { type: Number, required: true },
+    // capacity: { type: Number, required: true },
   })
 );
 
@@ -22,8 +22,7 @@ const courseSchema = Joi.object({
   start_date: Joi.date().required(),
   end_date: Joi.date().required(),
   instructor: Joi.string().required(),
-  capacity: Joi.number().required(),
+  // capacity: Joi.number().required(),
 });
 
-module.exports = courseSchema;
-exports.Course = Course;
+module.exports = { courseSchema, Course };
